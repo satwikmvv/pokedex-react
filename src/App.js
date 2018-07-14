@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import './assets/bootswatch.min.css'
 import './App.css';
 
 class App extends Component {
@@ -33,7 +33,8 @@ class App extends Component {
         console.log(x);
         this.setState({
           pokenumber: x.id,
-          pokeimg:x.sprites.front_default
+          pokeimg:x.sprites.front_default,
+          pokename: x.name
         })
       })
       .catch((error)=>this.setState({
@@ -44,15 +45,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <form onSubmit={this.handleSubmit} >
-          Pokemon:<input onChange={this.handleChange} name='pokename' value={this.state.pokename}/>
-          <button>Submit</button>
-        </form>
+        <div className="Form-header">
+          <form onSubmit={this.handleSubmit} >
+            Pokemon:<input onChange={this.handleChange} name='pokename' value={this.state.pokename}/>
+            <button type="button" className="btn-primary">Submit</button>
+          </form>
+        </div>
+        
         {(this.state.pokenumber)?
-          <div>
-            <h1>Pokemon Index number:{this.state.pokenumber}</h1>
-            <img src={this.state.pokeimg} alt=''/>
+          <div className="row">
+            <div className="card mb-3">
+              <h3 className="card-header">{this.state.pokename}</h3>
+              <div className="card-body">
+                <h5 className="card-title">{this.state.pokename}</h5>
+                <h6 className="card-subtitle text-muted">Poke ID:{this.state.pokenumber}</h6>
+              </div>
+              <img className="pokeimg" src={this.state.pokeimg} alt='' />
+            </div>
           </div>
+         
           :<h1>{this.state.err}</h1>
         }
       </div>

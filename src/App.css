@@ -2,27 +2,20 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.pokeimg {
+  height: 200px; 
+  width: 100%; 
+  display: block;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.card-header {
+  background-color: #fe0001;
+  color: black
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Form-header {
+  height:30vh;
+  width:100%;
+  background-color: #fe0001;
+  color: black
 }
