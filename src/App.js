@@ -38,14 +38,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="Form-header">
-          <h1>POKEDEX</h1>
-          <h3>{this.state.selectVal}:<input type='text' onChange={this.handleChange} name={this.state.selectVal} value={this.state[this.state.selectVal]}/></h3>
-          <select id='fieldSelect' onChange={this.selectChange} value={this.state.selectVal}>
-            <option value='selectnull'>Select</option>
-            <option value='pokename'>Pokemon</option>
-            <option value='poketype'>Type</option>
-          </select>
+        <div className="Form-header head">
+          <div className='row'>
+            <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3'>
+              <h1>POKEDEX</h1>
+            </div> 
+          </div>
+          <div className='row'>
+            <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3'>
+              <input type='text' onChange={this.handleChange} name={this.state.selectVal} value={this.state[this.state.selectVal]}/>
+              <select id='fieldSelect' onChange={this.selectChange} value={this.state.selectVal}>
+                <option value='selectnull'>Select</option>
+                <option value='pokename'>Pokemon</option>
+                <option value='poketype'>Type</option>
+              </select>
+            </div>
+          </div>
         </div>
         
         <section className="container-fluid">
@@ -57,7 +65,7 @@ class App extends Component {
             return(
               <div key={pokemon.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div className="card">
-                  <h3 className="card-header">{pokemon.name}</h3>
+                  <h4 className="card-header">{pokemon.name}</h4>
                   <div className="card-body">
                     <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
                     <h6 className="card-subtitle text-muted">Poke Number:{pokemon.num}</h6>
@@ -73,7 +81,7 @@ class App extends Component {
             return(
               <div key={pokemon.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div className="card mb-3">
-                  <h3 className="card-header">{pokemon.name}</h3>
+                  <h4 className="card-header">{pokemon.name}</h4>
                   <div className="card-body">
                     <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
                     <h6 className="card-subtitle text-muted">Poke Number:{pokemon.num}</h6>
@@ -85,27 +93,8 @@ class App extends Component {
             )
           })
           }
-            
           </div>
-          
         </section>
-        {/* <section>
-          {(this.state.pokenumber)?
-            <div className="row">
-              <div className="card mb-3">
-                <h3 className="card-header">{this.state.pokename}</h3>
-                <div className="card-body">
-                  <h5 className="card-title">{this.state.pokename}</h5>
-                  <h6 className="card-subtitle text-muted">Poke ID:{this.state.pokenumber}</h6>
-                </div>
-                <img className="pokeimg" src={this.state.pokeimg} alt='' />
-              </div>
-            </div>
-          
-            :<h1>{this.state.err}</h1>
-          }
-        </section> */}
-        
       </div>
     );
   }
