@@ -7,13 +7,13 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      pokenumber: null,
+      selectVal:'selectnull',
       pokename:'',
-      pokeimg:'',
-      err:'',
+      poketype:'',
+      selectnull:''
     }
     this.handleChange=this.handleChange.bind(this);
-    this.handleSubmit=this.handleSubmit.bind(this);
+    this.selectChange=this.selectChange.bind(this);
   }
   
   componentDidMount() {
@@ -25,55 +25,67 @@ class App extends Component {
       [e.target.name]: e.target.value
     })
   }
-  handleSubmit=(e)=>{
-    e.preventDefault();
+
+  selectChange=(e)=>{
     this.setState({
+      selectVal: e.target.value,
       pokename:'',
-      pokeimg:'',
-      pokenumber:null
+      poketype:'',
+      selectnull:''
     })
-    fetch(`http://pokeapi.co/api/v2/pokemon/${this.state.pokename}`)
-      .then(x=>x.json())
-      .then(x=>{
-        console.log(x);
-        this.setState({
-          pokenumber: x.id,
-          pokeimg:x.sprites.front_default,
-          pokename: x.name
-        })
-      })
-      .catch((error)=>this.setState({
-        err:'Pokemon Not Found'
-      }))
-    
   }
+  
   render() {
     return (
       <div className="App">
         <div className="Form-header">
-          <form onSubmit={this.handleSubmit} >
-            Pokemon:<input onChange={this.handleChange} name='pokename' value={this.state.pokename}/>
-            <button type="button" className="btn-primary">Submit</button>
-          </form>
+          <h1>POKEDEX</h1>
+          <h3>{this.state.selectVal}:<input type='text' onChange={this.handleChange} name={this.state.selectVal} value={this.state[this.state.selectVal]}/></h3>
+          <select id='fieldSelect' onChange={this.selectChange} value={this.state.selectVal}>
+            <option value='selectnull'>Select</option>
+            <option value='pokename'>Pokemon</option>
+            <option value='poketype'>Type</option>
+          </select>
         </div>
         
         <section className="container-fluid">
           <div className="row">
-            {pokedetails.pokemon.map(pokemon=>{
-              return(
-                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                  <div className="card mb-3">
-                    <h3 className="card-header">{pokemon.name}</h3>
-                    <div className="card-body">
-                      <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
-                      <h6 className="card-subtitle text-muted">Poke Number:{pokemon.num}</h6>
-                    </div>
-                    <img className="pokeimg" src={pokemon.img} alt={pokemon.name} />
+          {(this.state.pokename)?
+          (pokedetails.pokemon
+          .filter(pokemon=>pokemon.name.toLowerCase().includes(this.state.pokename.toLowerCase())))
+          .map(pokemon=>{
+            return(
+              <div key={pokemon.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div className="card mb-3">
+                  <h3 className="card-header">{pokemon.name}</h3>
+                  <div className="card-body">
+                    <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
+                    <h6 className="card-subtitle text-muted">Poke Number:{pokemon.num}</h6>
                   </div>
+                  <img className="pokeimg" src={pokemon.img} alt={pokemon.name} />
                 </div>
-                
-              )
-            })}
+              </div>
+              
+            )
+          })
+          :
+          pokedetails.pokemon.map(pokemon=>{
+            return(
+              <div key={pokemon.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div className="card mb-3">
+                  <h3 className="card-header">{pokemon.name}</h3>
+                  <div className="card-body">
+                    <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
+                    <h6 className="card-subtitle text-muted">Poke Number:{pokemon.num}</h6>
+                  </div>
+                  <img className="pokeimg" src={pokemon.img} alt={pokemon.name} />
+                </div>
+              </div>
+              
+            )
+          })
+          }
+            
           </div>
           
         </section>
