@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './assets/bootswatch.min.css'
 import './App.css';
-import pokedetails from './assets/pokedetails.json'
+import pokedetails from './assets/pokedetails.json';
+import CardDisplay from './components/CardDisplay'
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      selectVal:'selectnull',
+      selectVal:'pokename',
       pokename:'',
-      poketype:'',
-      selectnull:''
+      poketype:''
     }
     this.handleChange=this.handleChange.bind(this);
     this.selectChange=this.selectChange.bind(this);
@@ -38,17 +38,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="Form-header head">
-          <div className='row'>
-            <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3'>
-              <h1>POKEDEX</h1>
-            </div> 
+        <div className="Form-header container-fluid">
+          <div className='row title'>            
+            <h1>POKEDEX</h1>
           </div>
-          <div className='row'>
-            <div className='col-xs-12 col-sm-6 col-md-4 col-lg-3'>
-              <input type='text' onChange={this.handleChange} name={this.state.selectVal} value={this.state[this.state.selectVal]}/>
-              <select id='fieldSelect' onChange={this.selectChange} value={this.state.selectVal}>
-                <option value='selectnull'>Select</option>
+          <div className='row searchinput'>
+            <div className='col-xs-12 col-sm-8 col-md-7 col-lg-7'>
+              <input type='text' placeholder={`search using ${this.state.selectVal}`} onChange={this.handleChange} name={this.state.selectVal} value={this.state[this.state.selectVal]}/>
+            </div>
+            <div className='col-xs-12 col-sm-4 col-md-5 col-lg-5'>
+              <select id='fieldSelect' onChange={this.selectChange} value={this.state.selectVal} >
+                {/* <option value='selectnull'>Select</option> */}
                 <option value='pokename'>Pokemon</option>
                 <option value='poketype'>Type</option>
               </select>
@@ -63,33 +63,13 @@ class App extends Component {
           .filter(pokemon=>pokemon.name.toLowerCase().includes(this.state.pokename.toLowerCase())))
           .map(pokemon=>{
             return(
-              <div key={pokemon.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div className="card">
-                  <h4 className="card-header">{pokemon.name}</h4>
-                  <div className="card-body">
-                    <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
-                    <h6 className="card-subtitle text-muted">Poke Number:{pokemon.num}</h6>
-                  </div>
-                  <img className="pokeimg" src={pokemon.img} alt={pokemon.name} />
-                </div>
-              </div>
-              
+            <CardDisplay key={pokemon.id} pokemon={pokemon}/>
             )
           })
           :
           pokedetails.pokemon.map(pokemon=>{
             return(
-              <div key={pokemon.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div className="card mb-3">
-                  <h4 className="card-header">{pokemon.name}</h4>
-                  <div className="card-body">
-                    <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
-                    <h6 className="card-subtitle text-muted">Poke Number:{pokemon.num}</h6>
-                  </div>
-                  <img className="pokeimg" src={pokemon.img} alt={pokemon.name} />
-                </div>
-              </div>
-              
+            <CardDisplay key={pokemon.id} pokemon={pokemon}/>
             )
           })
           }
