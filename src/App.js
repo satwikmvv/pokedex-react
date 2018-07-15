@@ -11,14 +11,13 @@ class App extends Component {
       pokename:'',
       pokeimg:'',
       err:'',
-      pokearr:[]
     }
     this.handleChange=this.handleChange.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
   }
   
   componentDidMount() {
-    console.log(pokedetails)
+    console.log(pokedetails.pokemon)
   }
 
   handleChange=(e)=>{
@@ -58,20 +57,43 @@ class App extends Component {
           </form>
         </div>
         
-        {(this.state.pokenumber)?
+        <section className="container-fluid">
           <div className="row">
-            <div className="card mb-3">
-              <h3 className="card-header">{this.state.pokename}</h3>
-              <div className="card-body">
-                <h5 className="card-title">{this.state.pokename}</h5>
-                <h6 className="card-subtitle text-muted">Poke ID:{this.state.pokenumber}</h6>
-              </div>
-              <img className="pokeimg" src={this.state.pokeimg} alt='' />
-            </div>
+            {pokedetails.pokemon.map(pokemon=>{
+              return(
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                  <div className="card mb-3">
+                    <h3 className="card-header">{pokemon.name}</h3>
+                    <div className="card-body">
+                      <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
+                      <h6 className="card-subtitle text-muted">Poke Number:{pokemon.num}</h6>
+                    </div>
+                    <img className="pokeimg" src={pokemon.img} alt={pokemon.name} />
+                  </div>
+                </div>
+                
+              )
+            })}
           </div>
-         
-          :<h1>{this.state.err}</h1>
-        }
+          
+        </section>
+        {/* <section>
+          {(this.state.pokenumber)?
+            <div className="row">
+              <div className="card mb-3">
+                <h3 className="card-header">{this.state.pokename}</h3>
+                <div className="card-body">
+                  <h5 className="card-title">{this.state.pokename}</h5>
+                  <h6 className="card-subtitle text-muted">Poke ID:{this.state.pokenumber}</h6>
+                </div>
+                <img className="pokeimg" src={this.state.pokeimg} alt='' />
+              </div>
+            </div>
+          
+            :<h1>{this.state.err}</h1>
+          }
+        </section> */}
+        
       </div>
     );
   }
