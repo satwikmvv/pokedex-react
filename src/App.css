@@ -9,6 +9,14 @@
   max-width:150px;
 }
 
+.card {
+  background-color: black;
+  box-shadow:8px 10px 8px #0000006e
+}
+
+.container-fluid {
+  padding-top: 20px
+}
 
 .card-header {
   background-color: #fe0001;
