@@ -4,14 +4,15 @@
 
 .pokeimg {
   height: 120px; 
-  margin: 0 auto;
+  margin: 15px auto;
   display: block;
   max-width:150px;
 }
 
 .card {
   background-color: black;
-  box-shadow:8px 10px 8px #0000006e
+  box-shadow:8px 10px 8px #0000006e;
+  margin-bottom:1rem !important;
 }
 
 .container-fluid {

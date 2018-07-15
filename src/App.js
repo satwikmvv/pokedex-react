@@ -56,7 +56,7 @@ class App extends Component {
           .map(pokemon=>{
             return(
               <div key={pokemon.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div className="card mb-3">
+                <div className="card">
                   <h3 className="card-header">{pokemon.name}</h3>
                   <div className="card-body">
                     <h5 className="card-title">Type:{pokemon.type.join('/')}</h5>
