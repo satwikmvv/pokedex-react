@@ -31,7 +31,6 @@ class App extends Component {
       selectVal: e.target.value,
       pokename:'',
       poketype:'',
-      selectnull:''
     })
   }
   
@@ -42,13 +41,12 @@ class App extends Component {
           <div className='row title'>            
             <h1>POKEDEX</h1>
           </div>
-          <div className='row searchinput'>
-            <div className='col-xs-12 col-sm-8 col-md-7 col-lg-7'>
+          <div className='row searchinput justify-content-between'>
+            <div className='inputcol col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-4'>
               <input type='text' placeholder={`search using ${this.state.selectVal}`} onChange={this.handleChange} name={this.state.selectVal} value={this.state[this.state.selectVal]}/>
             </div>
-            <div className='col-xs-12 col-sm-4 col-md-5 col-lg-5'>
+            <div className='selectcol col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2'>
               <select id='fieldSelect' onChange={this.selectChange} value={this.state.selectVal} >
-                {/* <option value='selectnull'>Select</option> */}
                 <option value='pokename'>Pokemon</option>
                 <option value='poketype'>Type</option>
               </select>

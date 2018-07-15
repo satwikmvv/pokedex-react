@@ -11,9 +11,12 @@
   font-weight: 900;
 }
 
+.inputcol,.selectcol {
+  padding-bottom: 5px;
+}
+
 .searchinput input {
-  width:80%;
-  float:left;
+  width:100%;
   height:45px;
   background-color: #0000009c;
   color: darkgray;
@@ -23,13 +26,13 @@
   padding:5px;
 }
 .searchinput select {
-  width:50%;
-  float:right;
+  width:100%;
   height:45px;
   background-color: #0000009c;
   color: darkgray;
   font-weight: 900;
   font-size: 18px;
+  border:none;
 }
 
 .pokeimg {
@@ -59,7 +62,6 @@
 }
 
 .Form-header {
-  height:205px;
   width:100%;
   background-color: #fe0001;
   color: black
