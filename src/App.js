@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './assets/bootswatch.min.css'
 import './App.css';
+import pokedetails from './assets/pokedetails.json'
 
 class App extends Component {
   constructor(props){
@@ -9,12 +10,17 @@ class App extends Component {
       pokenumber: null,
       pokename:'',
       pokeimg:'',
-      err:''
+      err:'',
+      pokearr:[]
     }
     this.handleChange=this.handleChange.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
   }
   
+  componentDidMount() {
+    console.log(pokedetails)
+  }
+
   handleChange=(e)=>{
     this.setState({
       [e.target.name]: e.target.value

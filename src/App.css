@@ -8,13 +8,16 @@
   display: block;
 }
 
+
+
 .card-header {
   background-color: #fe0001;
-  color: black
+  color: black;
+
 }
 
 .Form-header {
-  height:30vh;
+  height:200px;
   width:100%;
   background-color: #fe0001;
   color: black
