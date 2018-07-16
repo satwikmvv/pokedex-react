@@ -57,19 +57,26 @@ class App extends Component {
         <section className="container-fluid">
           <div className="row">
           {(this.state.pokename)?
-          (pokedetails.pokemon
-          .filter(pokemon=>pokemon.name.toLowerCase().includes(this.state.pokename.toLowerCase())))
-          .map(pokemon=>{
-            return(
-            <CardDisplay key={pokemon.id} pokemon={pokemon}/>
-            )
-          })
-          :
-          pokedetails.pokemon.map(pokemon=>{
-            return(
-            <CardDisplay key={pokemon.id} pokemon={pokemon}/>
-            )
-          })
+            (pokedetails.pokemon
+            .filter(pokemon=>pokemon.name.toLowerCase().includes(this.state.pokename.toLowerCase())))
+            .map(pokemon=>{
+              return(
+              <CardDisplay key={pokemon.id} pokemon={pokemon}/>
+              )
+            })
+          :(this.state.poketype)?
+            (pokedetails.pokemon
+              .filter(pokemon=>pokemon.type.join('').toLowerCase().includes(this.state.poketype.toLowerCase())))
+              .map(pokemon=>{
+                return(
+                <CardDisplay key={pokemon.id} pokemon={pokemon}/>
+                )
+              })
+          : pokedetails.pokemon.map(pokemon=>{
+              return(
+              <CardDisplay key={pokemon.id} pokemon={pokemon}/>
+              )
+            })
           }
           </div>
         </section>
