@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './assets/bootswatch.min.css'
 import './App.css';
 import pokedetails from './assets/pokedetails.json';
-import CardDisplay from './components/CardDisplay'
+import CardDisplay from './components/CardDisplay';
+import PokeInfo from './components/PokeInfo';
 
 class App extends Component {
   constructor(props){
@@ -10,10 +11,13 @@ class App extends Component {
     this.state = {
       selectVal:'pokename',
       pokename:'',
-      poketype:''
+      poketype:'',
+      showpoke:true,
+      pokeinfo:null
     }
     this.handleChange=this.handleChange.bind(this);
     this.selectChange=this.selectChange.bind(this);
+    this.cardClick=this.cardClick.bind(this);
   }
   
   componentDidMount() {
@@ -34,6 +38,15 @@ class App extends Component {
     })
   }
   
+  cardClick=(e)=>{
+    var mons=e;
+    this.setState(prevState=>({
+      showpoke: !prevState.showpoke,
+      pokeinfo:mons
+    }))
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -72,11 +85,13 @@ class App extends Component {
                 <CardDisplay key={pokemon.id} pokemon={pokemon}/>
                 )
               })
-          : pokedetails.pokemon.map(pokemon=>{
+          : (this.state.showpoke)?
+            pokedetails.pokemon.map(pokemon=>{
               return(
-              <CardDisplay key={pokemon.id} pokemon={pokemon}/>
+              <CardDisplay key={pokemon.id} pokemon={pokemon} onClick={()=>this.cardClick(pokemon)}/>
               )
             })
+            : <PokeInfo pokemon={this.state.pokeinfo} onClick={()=>this.cardClick(this.state.pokeinfo)}/>
           }
           </div>
         </section>
