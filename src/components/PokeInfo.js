@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 class PokeInfo extends Component {
-    constructor(props){
-        super(props);
-    }
+    
     render() {
         return (
             <div onClick={this.props.onClick}>

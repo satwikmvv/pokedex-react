@@ -70,21 +70,29 @@ class App extends Component {
         <section className="container-fluid">
           <div className="row">
           {(this.state.pokename)?
-            (pokedetails.pokemon
-            .filter(pokemon=>pokemon.name.toLowerCase().includes(this.state.pokename.toLowerCase())))
-            .map(pokemon=>{
-              return(
-              <CardDisplay key={pokemon.id} pokemon={pokemon}/>
-              )
-            })
-          :(this.state.poketype)?
-            (pokedetails.pokemon
-              .filter(pokemon=>pokemon.type.join('').toLowerCase().includes(this.state.poketype.toLowerCase())))
+            (
+              (this.state.showpoke)?
+              (pokedetails.pokemon
+              .filter(pokemon=>pokemon.name.toLowerCase().includes(this.state.pokename.toLowerCase())))
               .map(pokemon=>{
                 return(
-                <CardDisplay key={pokemon.id} pokemon={pokemon}/>
+                <CardDisplay key={pokemon.id} pokemon={pokemon} onClick={()=>this.cardClick(pokemon)}/>
                 )
               })
+              : <PokeInfo pokemon={this.state.pokeinfo} onClick={()=>this.cardClick(this.state.pokeinfo)}/>
+            )
+          :(this.state.poketype)?
+            (
+              (this.state.showpoke)?
+              (pokedetails.pokemon
+                .filter(pokemon=>pokemon.type.join('').toLowerCase().includes(this.state.poketype.toLowerCase())))
+                .map(pokemon=>{
+                  return(
+                  <CardDisplay key={pokemon.id} pokemon={pokemon} onClick={()=>this.cardClick(pokemon)}/>
+                  )
+                })
+                : <PokeInfo pokemon={this.state.pokeinfo} onClick={()=>this.cardClick(this.state.pokeinfo)}/>
+            )
           : (this.state.showpoke)?
             pokedetails.pokemon.map(pokemon=>{
               return(
