@@ -1,4 +1,4 @@
-#PokeDex App
+# PokeDex App
 PokeDex App with search and filter by type and name of pokemon made using ReactJs.
 App In Progress
 - [Live Demo](https://pokedexwiki.netlify.com/)
