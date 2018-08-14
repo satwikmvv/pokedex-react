@@ -7,6 +7,8 @@ App In Progress
 
 > fork or clone repo
 
+> npm install
+
 > npm start
 
 
