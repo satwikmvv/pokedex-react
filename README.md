@@ -1,3 +1,27 @@
+### PokeDex App
+PokeDex App with search and filter by type and name of pokemon made using ReactJs.
+App In Progress
+- [Live Demo](https://pokedexwiki.netlify.com/)
+
+## Usage
+
+> fork or clone repo
+
+> npm start
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
